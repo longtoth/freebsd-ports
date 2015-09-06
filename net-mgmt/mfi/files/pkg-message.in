@@ -1,0 +1,16 @@
+
+============================================================
+To enable mFi, add the following line to /etc/rc.conf:
+
+	mfi_enable="YES"
+
+To start the service immediately, run:
+
+	service mfi start
+
+With mFi running, navigate to the following URL:
+
+	https://%%HOSTNAME%%:6443/
+
+To change the default listening port, modify the value of
+`unifi.https.port' in %%ETCDIR%%/system.properties.

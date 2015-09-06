@@ -1,0 +1,16 @@
+HDHomeRun DVR by SiliconDust is a personal video recorder
+that aims to simplify and change the way we watch and record
+live television.
+
+This port provides the HDHomeRun RECORD engine, a daemon
+that streams live TV from a compatible HDHomeRun tuner and
+records the stream to disk. Recordings can be scheduled and
+viewed using front-ends such as Kodi (with the HDHomeRun
+add-on) and SiliconDust's HDHomeRun VIEW app for Windows,
+Android, and Mac.
+
+The recording engine requires a compatible hardware tuner
+(e.g. HDHomeRun PRIME, CONNECT, EXTEND), as well as enough
+disk space for storing recordings.
+
+WWW: http://kck.st/1DveiZP

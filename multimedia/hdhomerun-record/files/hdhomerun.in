@@ -1,0 +1,43 @@
+#!/bin/sh
+
+# $FreeBSD$
+#
+# PROVIDE: %%PORTNAME%%
+# REQUIRE: LOGIN
+# KEYWORD: shutdown
+#
+# Add these lines to /etc/rc.conf.local or /etc/rc.conf
+# to enable this service:
+#
+# %%PORTNAME%%_enable (bool):	Set to "YES" to enable the HDHomeRun
+# 				recording service. Defaults to "NO".
+
+. /etc/rc.subr
+
+name="%%PORTNAME%%"
+rcvar="%%PORTNAME%%_enable"
+
+load_rc_config %%PORTNAME%%
+: ${%%PORTNAME%%_enable:="NO"}
+
+config_file="%%ETCDIR%%/%%BINNAME%%.conf"
+pidfile="/var/run/%%PORTNAME%%.pid"
+
+command="/usr/sbin/daemon"
+command_args="-rP ${pidfile} %%BINDIR%%/%%BINNAME%% foreground --conf %%ETCDIR%%/%%BINNAME%%.conf"
+start_precmd="%%PORTNAME%%_prestart"
+
+%%PORTNAME%%_prestart() {
+	if [ ! -f $config_file ]; then
+		err 1 "Configuration file $config_file does not exist. Please copy the sample, $config_file.sample, to $config_file."
+	else
+		recording_path=`grep 'RecordPath' $config_file | awk '{FS = "="; print $2}'`
+		if [ -z $recording_path ]; then
+			err 1 "Recording path is not defined. Please define \`RecordPath' in $config_file."
+		elif [ ! -d $recording_path ]; then
+			err 1 "Recording directory $recording_path does not exist. Please set \`RecordPath' in $config_file to a valid path."
+		fi
+	fi
+}
+
+run_rc_command "$1"

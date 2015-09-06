@@ -1,0 +1,17 @@
+#!/bin/sh
+
+case $2 in
+DEINSTALL)
+	rm -rf %%TMPDIR%%/*
+	;;
+POST-DEINSTALL)
+	echo
+	echo "============================================================"
+	echo "If you no longer need the mFi database, configuration, or"
+	echo "logs, please remove the following directories manually:"
+	echo
+	echo -e "\t%%DBDIR%%"
+	echo -e "\t%%LOGDIR%%"
+	echo
+	;;
+esac

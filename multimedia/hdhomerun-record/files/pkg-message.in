@@ -1,0 +1,29 @@
+
+============================================================================
+IMPORTANT: You must specify where to store recordings before the
+recording engine can be used. A sample configuration file has been
+provided that you must manually copy and edit, like so:
+
+	cd %%ETCDIR%%
+	cp %%BINNAME%%.conf.sample %%BINNAME%%.conf
+	ee %%BINNAME%%.conf
+
+Change the value of the `RecordPath' setting to the full path to the
+desired recording directory. If such directory does not already exist,
+you must first create it manually. The recording engine will store log
+files here as well.
+
+Once configured, enable the HDHomeRun recording service by adding the
+following line to /etc/rc.conf:
+
+	%%PORTNAME%%_enable="YES"
+
+To start the service immediately, run:
+
+	service %%PORTNAME%% start
+
+If the service has started successfully, you will find a log file in
+the recording directory.
+
+NOTE: If you have a firewall or packet filter, you must allow inbound
+UDP traffic on port 65001 to make discovery possible.

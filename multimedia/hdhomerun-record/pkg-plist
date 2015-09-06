@@ -1,0 +1,2 @@
+%%BINDIR%%/%%BINNAME%%
+%%ETCDIR%%/%%BINNAME%%.conf.sample

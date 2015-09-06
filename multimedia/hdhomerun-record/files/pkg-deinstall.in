@@ -1,0 +1,13 @@
+#!/bin/sh
+
+case $2 in
+DEINSTALL)
+	;;
+POST-DEINSTALL)
+	echo
+	echo "============================================================"
+	echo "NOTE: If you no longer need the HDHomeRun recordings or log"
+	echo "files, you must manually remove the recording directory."
+	echo
+	;;
+esac

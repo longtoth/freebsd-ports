@@ -1,0 +1,9 @@
+mFi is a M2M management software solution from Ubiquiti Networks
+designed to work with Ubiquiti's mFi product line.
+
+The mFi Controller software allows you to monitor and manage your
+mPort, mPower, mSensor, and other supported devices from a web
+browser. It also allows you to create rules that trigger actions
+based on events and data from your mFi sensors.
+
+WWW: https://www.ubnt.com/mfi/

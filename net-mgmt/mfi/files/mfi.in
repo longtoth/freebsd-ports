@@ -1,0 +1,32 @@
+#!/bin/sh
+
+# $FreeBSD$
+#
+# PROVIDE: mfi
+# REQUIRE: LOGIN
+# KEYWORD: shutdown
+#
+# Add these lines to /etc/rc.conf.local or /etc/rc.conf
+# to enable this service:
+#
+# mfi_enable (bool):	Set to "YES" to enable mFi.
+#                       Defaults to "NO".
+# mfi_vmargs (string):	Optional Java VM arguments.
+#                       Not set by default.
+
+. /etc/rc.subr
+
+name=mfi
+rcvar=mfi_enable
+
+load_rc_config $name
+: ${mfi_enable:="NO"}
+: ${mfi_vmargs:=""}
+
+logfile="%%LOGDIR%%/catalina.log"
+mfi_chdir="%%DATADIR%%"
+pidfile="/var/run/${name}.pid"
+command="/usr/sbin/daemon"
+command_args="-rP ${pidfile} /usr/local/bin/java ${mfi_vmargs} -jar lib/ace.jar start >>${logfile} 2>&1"
+
+run_rc_command "$1"
