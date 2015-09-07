@@ -13,7 +13,7 @@ EXTRACT_SUFX=
 MAINTAINER=	nchevsky@blazis.com
 COMMENT=	HDHomeRun DVR recording engine by SiliconDust
 
-#RESTRICTED=	The distfile includes a firmware image that may only be downloaded from the official mirror.
+RESTRICTED=	SiliconDust has not authorized redistribution of the binaries.
 
 NO_BUILD=	yes
 ONLY_FOR_ARCHS=	amd64
