@@ -7,8 +7,8 @@ DEINSTALL)
 POST-DEINSTALL)
 	echo
 	echo "============================================================"
-	echo "If you no longer need the mFi database, configuration, or"
-	echo "logs, please remove the following directories manually:"
+	echo "If you no longer need the mFi database or logs, please"
+	echo "remove the following directories manually:"
 	echo
 	echo -e "\t%%DBDIR%%"
 	echo -e "\t%%LOGDIR%%"

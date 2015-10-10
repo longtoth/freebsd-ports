@@ -10,9 +10,9 @@ DISTNAME=	mFi.unix
 MAINTAINER=	nchevsky@blazis.com
 COMMENT=	Ubiquiti mFi Controller
 
-RESTRICTED=	The distfile includes a firmware image that may only be downloaded from the official mirror.
+RUN_DEPENDS=	mongodb<=2.4.10:${PORTSDIR}/databases/mongodb
 
-RUN_DEPENDS=	mongodb>=2.4.6:${PORTSDIR}/databases/mongodb
+RESTRICTED=	The distfile includes a firmware image that may only be downloaded from the official mirror.
 
 USES=		zip
 USE_JAVA=	yes
@@ -31,7 +31,7 @@ WRKSRC=		${WRKDIR}/mFi
 
 PLIST_SUB+=	DBDIR=${DBDIR} ETCDIR=${ETCDIR} LOGDIR=${LOGDIR} TMPDIR=${TMPDIR}
 SUB_FILES+=	pkg-deinstall pkg-message
-SUB_LIST+=	DBDIR=${DBDIR} ETCDIR=${ETCDIR} HOSTNAME=`hostname` LOGDIR=${LOGDIR} TMPDIR=${TMPDIR}
+SUB_LIST+=	DBDIR=${DBDIR} ETCDIR=${ETCDIR} HOSTNAME=`hostname` LOGDIR=${LOGDIR} PORTNAME=${PORTNAME} TMPDIR=${TMPDIR}
 
 post-extract:
 	# extract web application archive
@@ -55,14 +55,11 @@ post-install:
 	# move things that will be symlinked
 	@${MV} ${STAGEDIR}${DATADIR}/conf/* ${STAGEDIR}${ETCDIR} && ${RMDIR} ${STAGEDIR}${DATADIR}/conf
 	@${MV} ${STAGEDIR}${DATADIR}/data/* ${STAGEDIR}${DBDIR} && ${RMDIR} ${STAGEDIR}${DATADIR}/data
-	@${MV} ${STAGEDIR}${DBDIR}/system.properties ${STAGEDIR}${ETCDIR}
-	# set up placeholders for files created at startup
-	@${TOUCH} ${STAGEDIR}${DBDIR}/keystore
-	@${TOUCH} ${STAGEDIR}${DBDIR}/update.json
+	@${MV} ${STAGEDIR}${DBDIR}/system.properties ${STAGEDIR}${ETCDIR}/${PORTNAME}.conf.sample
 	# create symlinks
 	@${LN} -s ${DBDIR}  ${STAGEDIR}${DATADIR}/data
 	@${LN} -s ${ETCDIR} ${STAGEDIR}${DATADIR}/conf
-	@${LN} -s ${ETCDIR}/system.properties ${STAGEDIR}${DBDIR}/system.properties
+	@${LN} -s ${ETCDIR}/${PORTNAME}.conf ${STAGEDIR}${DBDIR}/system.properties
 	@${LN} -s ${LOCALBASE}/bin/mongod ${STAGEDIR}${DATADIR}/bin/mongod
 	@${LN} -s ${LOGDIR} ${STAGEDIR}${DATADIR}/logs
 	@${LN} -s ${TMPDIR} ${STAGEDIR}${DATADIR}/work

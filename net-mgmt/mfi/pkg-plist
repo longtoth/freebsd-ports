@@ -617,14 +617,12 @@
 %%DATADIR%%/webapps/ROOT/waiting.jsp
 %%DATADIR%%/webapps/ROOT/wizard.jsp
 %%DATADIR%%/work
-%%DBDIR%%/keystore
 %%DBDIR%%/system.properties
-%%DBDIR%%/update.json
 %%ETCDIR%%/catalina.policy
 %%ETCDIR%%/catalina.properties
 %%ETCDIR%%/context.xml
+%%ETCDIR%%/mfi.conf.sample
 %%ETCDIR%%/server.xml
-%%ETCDIR%%/system.properties
 %%ETCDIR%%/tomcat-users.xml
 %%ETCDIR%%/web.xml
 @dir %%DBDIR%%
